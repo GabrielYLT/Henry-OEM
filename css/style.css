@@ -10039,7 +10039,6 @@ h6,
   right: 30px;
   bottom: 30px;
   left: 30px;
-  border: 2px solid #FFFFFF;
   z-index: 1;
 }
 
@@ -10052,7 +10051,7 @@ h6,
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FFFFFF;
+  background: none;
   text-decoration: none;
   opacity: 0;
   transition: .5s;
@@ -10060,7 +10059,7 @@ h6,
 }
 
 .portfolio-item:hover .portfolio-btn {
-  opacity: 1;
+  opacity: 0.5;
   width: calc(100% - 60px);
   height: calc(100% - 60px);
   top: 30px;
