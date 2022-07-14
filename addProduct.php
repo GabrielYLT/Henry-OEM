@@ -1,9 +1,9 @@
-<!--<?php
+<?php
 include("Connection.php");
 session_start();
 error_reporting(0);
 ?>
-<?php
+<!--<?php
 #if(!isset($_SESSION['id']))
 #{
 #?>
@@ -55,7 +55,7 @@ if(isset($_POST["sbtn"]))
 		  $css_class = "alert-danger";
         }
 
-?>
+?>-->
 		<script type="text/javascript">
 		alert("Added Successfully!");
 		
@@ -63,7 +63,6 @@ if(isset($_POST["sbtn"]))
 		
 	<?php 
  header("refresh:0.001;url=addProduct.php");
-}
 }
 ?>-->
 

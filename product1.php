@@ -1,3 +1,8 @@
+<?php
+include("Connection.php");
+session_start();
+error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -145,70 +150,8 @@
 									
 									}
 									echo "";
-									} else { echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No results Found !"; }}
+									} else { echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No results Found !"; }
 									?>    
-				
-				
-                    <div class="col-lg-4 col-md-4 all cny">
-                      <div class="product-item">
-                        <a href="#"><img src="img/jmmcookies4.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a>
-                        <div class="down-content">
-                          <a href="#"><h4>Tittle goes here</h4></a>
-                          <!--<h6>$18.25</h6>-->
-                          <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 all hra">
-                      <div class="product-item">
-                        <a href="#"><img src="img/jmmcookies5.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a>
-                        <div class="down-content">
-                          <a href="#"><h4>Tittle goes here</h4></a>
-                          <!--<h6>$16.75</h6>-->
-                          <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 all cny">
-                      <div class="product-item">
-                        <a href="#"><img src="img/jmmcookies6.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a>
-                        <div class="down-content">
-                          <a href="#"><h4>Tittle goes here</h4></a>
-                          <!--<h6>$32.50</h6>-->
-                          <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 all hra">
-                      <div class="product-item">
-                        <a href="#"><img src="img/jmmcookies4.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a>
-                        <div class="down-content">
-                          <a href="#"><h4>Tittle goes here</h4></a>
-                          <!--<h6>$24.60</h6>-->
-                          <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 all cny">
-                      <div class="product-item">
-                        <a href="#"><img src="img/jmmcookies5.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a>
-                        <div class="down-content">
-                          <a href="#"><h4>Tittle goes here</h4></a>
-                          <!--<h6>$18.75</h6>-->
-                          <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 all mfk">
-                      <div class="product-item">
-                        <a href="#"><img src="img/jmmcookies6.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a>
-                        <div class="down-content">
-                          <a href="#"><h4>Tittle goes here</h4></a>
-                          <!--<h6>$12.50</h6>-->
-                          <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-                        </div>
-                      </div>
-                    </div>
                 </div>
             </div>
           </div>
