@@ -4,33 +4,33 @@ session_start();
 error_reporting(0);
 ?>
 <?php
-if(!isset($_SESSION['id']))
-{
-?>
+#if(!isset($_SESSION['id']))
+#{
+#?>
     <script>
     alert("Please login. Thank you!!!");
     </script>
-    <?php
-    header("refresh:0.001;url=login.php");
+    #<?php
+   # header("refresh:0.001;url=login.php");
     //exit();
 	
 	
-}else{
-	$Admin_id=$_SESSION['id'];
-$result=mysqli_query($connect,"SELECT *FROM admin WHERE AID = $Admin_id");
-$row = mysqli_fetch_assoc($result);
-	if(($row['Department'])!='All Department')
-{	
-?>
+#}else{
+	#$Admin_id=$_SESSION['id'];
+#$result=mysqli_query($connect,"SELECT *FROM admin WHERE AID = $Admin_id");
+#$row = mysqli_fetch_assoc($result);
+#	if(($row['Department'])!='All Department')
+#{	
+#?>
     <script>
     alert("You Are Not Authorize To Access This Page!!!");
     </script>
-    <?php
-    header("refresh:0.001;url=generalD.php");
+  #  <?php
+   # header("refresh:0.001;url=generalD.php");
     //exit();
 	
-}
-}
+#}
+#}
 ?>
 <?php
 if(isset($_POST["sbtn"]))
@@ -224,12 +224,9 @@ $(document).ready(function(){
 									<select  class="form-control selectList" style="width:100%;Height:50%;" name="category" id="gender" required>
 									<option value="" disabled selected>Please Select Product Category</option>
 									<optgroup label="Group">
-									<option value="1">New Year Cookies</option>
-									<option value="2">Raya Cookies</option>
-									<option value="3">Mooncakes</option>
-									<option value="4">Raw Material </option>
-									<option value="5">Packing Material</option>
-									<option value="6">General Use</option>
+									<option value="col-lg-4 col-md-4 all cny">New Year Cookies</option>
+									<option value="col-lg-4 col-md-4 all hra">Raya Cookies</option>
+									<option value="col-lg-4 col-md-4 all mkf">Mooncakes</option>
 									</select>
                                 </div>
 								<hr>
