@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+include("Connection.php");
+session_start();
+error_reporting(0);
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -106,10 +110,11 @@
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5 pb-5" id="home">
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
+            
+			<div class="carousel-inner">
                 <div class="carousel-item active">
                     <img class="w-100" src="img/jmmcookies2.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center" style="margin-left:-1%;">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Traditional & Delicious</h4>
                             <h1 class="display-3 text-white mb-md-4" style="font-size:70px">
@@ -161,12 +166,12 @@
                 </div>
             </div>
             <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-                <div class="btn btn-secondary px-0" style="width: 45px; height: 45px; border-radius:10px;">
+                <div class="btn btn-secondary px-0" style="width: 35px; height: 35px; border-radius:10px;">
                     <span class="carousel-control-prev-icon mb-n2"></span>
                 </div>
             </a>
             <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                <div class="btn btn-secondary px-0" style="width: 45px; height: 45px; border-radius:10px;">
+                <div class="btn btn-secondary px-0" style="width: 35px; height: 35px; border-radius:10px;">
                     <span class="carousel-control-next-icon mb-n2"></span>
                 </div>
             </a>
@@ -247,67 +252,35 @@
 					<a href="" class="btn btn-primary mt-2" style="float:right">Learn More</a>
 				</div>
             </div>
+			
         <div class="row">
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="img/jmmcookies4.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a><hr>
-              <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <!--<h6>$25.75</h6>-->
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+		
+			<?php
+									$conn = $connect;
+										
+									if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+									}
+									$sql = "SELECT * FROM product LIMIT 6";
+									$result = $conn->query($sql);
+									if ($result->num_rows > 0) {
+
+									while($row = $result->fetch_assoc()) {
+									echo "<div class='col-md-4'>
+            <div class='product-item'>
+              <a><img src='images/" . $row["PImage"]. "' alt='' style='object-fit:contain;width:100%;height:500px;'></a><hr>
+              <div class='down-content'>
+                <a href=><h4>".$row["PName"]."</h4></a>
+                <p>".$row["PDesc"]."</p>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="img/jmmcookies5.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a><hr>
-              <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <!--<h6>$30.25</h6>-->
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="img/jmmcookies6.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a><hr>
-              <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <!--<h6>$20.45</h6>-->
-                <p>Sixteen Clothing is free CSS template provided by TemplateMo.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="img/jmmcookies6.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a><hr>
-              <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <!--<h6>$15.25</h6>-->
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="img/jmmcookies5.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a><hr>
-              <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <!--<h6>$12.50</h6>-->
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="img/jmmcookies4.jpg" alt="" style="object-fit:contain;width:100%;height:500px;"></a><hr>
-              <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <!--<h6>$22.50</h6>-->
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
-              </div>
-            </div>
-          </div>
+          </div>";
+									
+									}
+									echo "";
+									} else { echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No results Found !"; }
+									?>    
+		
         </div>
       </div>
     </div>
@@ -322,39 +295,36 @@
                 <h1 class="position-relative text-center mb-5">Delicious Cookies Made From Our </h1>
             </div>
         </div>
+		
+		
         <div class="row m-0 portfolio-container">
-            <div class="col-lg-6 col-md-8 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="img/jmmcookies7.jpg" alt="">
-                    <a class="portfolio-btn" href="img/jmmcookies7.jpg" data-lightbox="portfolio">
-                        <i class="" style="font-size: 60px;"></i>
+		
+		
+			<?php
+									$conn = $connect;
+										
+									if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+									}
+									$sql = "SELECT * FROM display ";
+									$result = $conn->query($sql);
+									if ($result->num_rows > 0) {
+
+									while($row = $result->fetch_assoc()) {
+									echo "  <div class='col-lg-6 col-md-8 p-0 portfolio-item'>
+                <div class='position-relative overflow-hidden'>
+                    <img class='img-fluid w-100' src='images/" . $row["DImage"]. "' alt=''>
+                    <a class='portfolio-btn' href='images/" . $row["DImage"]. "' data-lightbox='portfolio'>
+                        <i class='' style='font-size: 60px;'></i>
                     </a>
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-8 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="img/jmmcookies7.jpg" alt="">
-                    <a class="portfolio-btn" href="img/jmmcookies7.jpg" data-lightbox="portfolio">
-                        <i class="" style="font-size: 60px;"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-8 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="img/jmmcookies7.jpg" alt="">
-                    <a class="portfolio-btn" href="img/jmmcookies7.jpg" data-lightbox="portfolio">
-                        <i class="" style="font-size: 60px;"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-8 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="img/jmmcookies7.jpg" alt="">
-                    <a class="portfolio-btn" href="img/jmmcookies7.jpg" data-lightbox="portfolio">
-                        <i class="" style="font-size: 60px;"></i>
-                    </a>
-                </div>
-            </div>
+            </div>";
+									
+									}
+									echo "";
+									} else { echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No results Found !"; }
+									?>    
+
         </div>
     </div>
     <!-- Portfolio End -->

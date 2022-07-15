@@ -197,7 +197,7 @@ $(document).ready(function(){
 							</div>
                                 <div class="form-group">
                                     <label for="email">Product Name </label>
-                                    <input value="" placeholder="Please Enter Product Name"  name="pname" type="text" class="form-control validate" required>
+                                    <input value="" placeholder="Please Enter Product Name"  name="pname" type="text" class="form-control validate" autocomplete="off" required>
 									<span id="erroremail"></span>	
                                 </div>
 								<div class="form-group" style="margin-bottom:0%;">
@@ -207,7 +207,7 @@ $(document).ready(function(){
                                 </div>
 								<div class="select">
 									<label for="gender">Category &nbsp; </label>
-									<select  class="form-control selectList" style="width:100%;Height:50%;" name="category" id="gender" required>
+									<select  class="form-control selectList" name="category" id="gender" required>
 									<option value="" disabled selected>Please Select Product Category</option>
 									<optgroup label="Group">
 									<option value="col-lg-4 col-md-4 all cny">New Year Cookies</option>
