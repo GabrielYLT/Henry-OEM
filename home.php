@@ -70,7 +70,7 @@ error_reporting(0);
                         <ul class="nav" style="padding-left:31.75%;padding-right:31.75%;">
                             <li class="scroll-to-section"><a href="#home">Home</a></li>
                             <li class="scroll-to-section"><a href="#about">About</a></li>
-                           	
+                           	<li class="scroll-to-section"><a href="#product">Products</a></li>
                         <!-- 
                             <li class="submenu">
                                 <a href="javascript:;">Drop Down</a>
@@ -80,7 +80,7 @@ error_reporting(0);
                                     <li><a href="#">Drop Down Page 3</a></li>
                                 </ul>
                             </li>
-                        -->
+                        
                             <li class="submenu">
                                 <a href="#product">Products</a>
                                 <ul>
@@ -89,7 +89,7 @@ error_reporting(0);
                                     <li><a href="product1.html">Products Page 3</a></li>
                                     <li><a href="product1.html">Products Page 4</a></li>
                                 </ul>
-                            </li>
+                            </li>-->
                             <!-- <li class=""><a rel="sponsored" href="https://templatemo.com" target="_blank">External URL</a></li> -->
                             <li class="scroll-to-section"><a href="#contact">Contact Us</a></li>
 							 <li class="scroll-to-section"></li>
@@ -249,7 +249,7 @@ error_reporting(0);
                     <h1 class="position-relative mb-5">Products</h1>
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0">
-					<a href="" class="btn btn-primary mt-2" style="float:right">Learn More</a>
+					<a href="product1.php" class="btn btn-primary mt-2" style="float:right">Learn More</a>
 				</div>
             </div>
 			
@@ -431,6 +431,25 @@ error_reporting(0);
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
+	
+	<!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+	
+	<!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+
+    <!-- Plugins -->
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/datepicker.js"></script>
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/slick.js"></script> 
+    <script src="assets/js/isotope.js"></script> 
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
 
 
 </body>
