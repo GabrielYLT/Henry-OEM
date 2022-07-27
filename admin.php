@@ -1,3 +1,8 @@
+<?php
+include("Connection.php");
+session_start();
+error_reporting(0);
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -88,25 +93,25 @@ canvas{
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
-        <a href="dashboard.php" class="simple-text logo-mini">
+        <a href="admin.php" class="simple-text logo-mini">
           Oem
         </a>
-        <a href="dashboard.php" class="simple-text logo-normal">
+        <a href="admin.php" class="simple-text logo-normal">
           Cookies Setting
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper" >
         <ul class="nav">
           <li>
-            <a href="dashboard.php">
+            <a href="admin.php">
               <i class="now-ui-icons education_paper"></i>
-              <p>Slide Show Setting</p>
+              <p>Home Page Settings </p>
             </a>
           </li>
 			<li>
-				<a href="history.php">
+				<a href="addProduct.php">
 				  <i class="now-ui-icons files_paper"></i>
-				  <p>Product</p>
+				  <p>Add Product</p>
 				</a>
 			</li>
 		   <!--<li>
@@ -116,9 +121,9 @@ canvas{
             </a>
           </li>-->
           <li>
-            <a href="manage.php">
+            <a href="Plist.php">
               <i class="now-ui-icons loader_gear"></i>
-              <p>Portfolio Image</p>
+              <p>Product Settings</p>
             </a>
           </li>
 		  <li>
@@ -138,7 +143,7 @@ canvas{
                     <div class="tm-block h-100" style="border-radius:10px;border-style: groove;background-color: #ffffff;opacity: 75%;">
                         <div class="row">
                             <div class="col-md-8 col-sm-12">
-						<h2 class="tm-block-title d-inline-block" style="margin-left:3%;margin-top:2%;color:black;font-weight:bold;display:inline;">Slide Show Image List<h2><h2 style="margin-left:3%;margin-top:2%;color:maroon;font-weight:bold;display:inline;" id="current_date"></h2>			
+						<h2 class="tm-block-title d-inline-block" style="margin-left:3%;margin-top:2%;color:black;font-weight:bold;display:inline;">Slide Show Image List<h2><h2 style="margin-left:3%;margin-top:2%;color:maroon;font-weight:bold;display:inline;"></h2>			
 <script>
 date = new Date();
 year = date.getFullYear();
@@ -151,8 +156,8 @@ document.getElementById("current_date").innerHTML = month + "-" + day + "-" + ye
 							<div>
 							<hr>
 
-<h6 style="margin-left:auto%;margin-top:auto%;"class="text-white text-capitalize ps-3"><input style="width:99%;height:35px;margin-left:autos%;border-radius:10px;border-style: none;" id="myInput" type="text" autocomplete="off" name="searchname" placeholder="Search" ></h6>
-<hr>
+
+
 </div>
                         </div>
                         <div class="table-responsive" style="width: auto%; height:500px; ">
@@ -175,11 +180,13 @@ document.getElementById("current_date").innerHTML = month + "-" + day + "-" + ye
 									if ($result->num_rows > 0) {
 
 									while($row = $result->fetch_assoc()) {
-									echo "<td style='text-align:center;color:black;font-weight:bold;'><img width='125px' src='images/" . $row["SImage"]. "'></td>" ;
+									echo "<td style='text-align:center;color:black;font-weight:bold;'><img width='245px' src='images/" . $row["SImage"]. "'></td>" ;
 									
-                                    ?>  
+                                     ?>  
                                     <td>
-
+									<div class='btn-group'> 
+									<a href="editS.php?details&id=<?php echo $row['SlideID'];?>" class="btn btn-secondary" >Edit</a></td>
+									</div>
                                     <?php
 									echo "</tr>" ;
 									}
@@ -193,6 +200,72 @@ document.getElementById("current_date").innerHTML = month + "-" + day + "-" + ye
             </div>
         </div>
     </div>
+	
+	
+			<div class="row tm-content-row tm-mt-big" style="font-family: 'Lato', sans-serif;padding-left:1%;padding-top:auto%;padding-right:1%;padding-bottom:1%;">
+                <div class="col-xl-20 col-lg-12 tm-md-12 tm-sm-12 tm-col" style="padding-top:1%;margin: auto; margin-bottom:2%;">
+                    <div class="tm-block h-100" style="border-radius:10px;border-style: groove;background-color: #ffffff;opacity: 75%;">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12">
+						<h2 class="tm-block-title d-inline-block" style="margin-left:3%;margin-top:2%;color:black;font-weight:bold;display:inline;">Portfolio Image List<h2><h2 style="margin-left:3%;margin-top:2%;color:maroon;font-weight:bold;display:inline;"></h2>			
+<script>
+date = new Date();
+year = date.getFullYear();
+month = date.getMonth() + 1;
+day = date.getDate();
+document.getElementById("current_date").innerHTML = month + "-" + day + "-" + year;
+</script>
+							
+                            </div>
+							<div>
+							<hr>
+
+
+
+</div>
+                        </div>
+                        <div class="table-responsive" style="width: auto%; height:500px; ">
+                            <table class="table table-hover table-striped tm-table-striped-even mt-3">
+                                <thead>
+                                    <tr class="tm-bg-gray">
+										<th scope="col" style="text-align:center;color:black;font-weight:bold;">Slide Image</th>
+										<th> &nbsp; </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                	<?php
+									$conn = $connect;
+									
+									if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+									}
+									$sql = "SELECT * FROM display";
+									$result = $conn->query($sql);
+									if ($result->num_rows > 0) {
+
+									while($row = $result->fetch_assoc()) {
+									echo "<td style='text-align:center;color:black;font-weight:bold;'><img width='245px' src='images/" . $row["DImage"]. "'></td>" ;
+									
+                                     ?>  
+                                    <td>
+									<div class='btn-group'> 
+									<a href="editP.php?details&id=<?php echo $row['DID'];?>" class="btn btn-secondary" >Edit</a></td>
+									</div>
+                                    <?php
+									echo "</tr>" ;
+									}
+									echo "</table>";
+									} else { echo "0 results"; }
+									
+									?>    
+                                </tbody>
+                            </table>
+                        </div>
+            </div>
+        </div>
+    </div>
+	
+
 		<div class="content" style="min-height:10%">
 			<div class="row">
 			  

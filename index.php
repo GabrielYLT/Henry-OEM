@@ -2,7 +2,69 @@
 include("Connection.php");
 session_start();
 error_reporting(0);
-?><!DOCTYPE html>
+?>
+<?php 
+	if(isset($_POST["sbtn"]))
+	{
+		
+	$conn=$connect;
+		
+			$name = $_POST["name"];
+			$email = $_POST["email"];
+			$sub = $_POST["sub"];
+			$mes = $_POST["mes"];
+
+		    require "Mail/phpmailer/PHPMailerAutoload.php";
+            $mail = new PHPMailer; 
+
+            $mail->isSMTP();
+            $mail->Host='smtp.gmail.com';
+            $mail->Port=587;
+            $mail->SMTPAuth=true;
+            $mail->SMTPSecure='tls';
+
+            // h-hotel account
+            $mail->Username='jmmrecordsystem@gmail.com';
+            $mail->Password='teofcrdkmofzypjw';
+
+            // send by h-hotel email
+            $mail->setFrom('email', 'Password Reset');
+            // get email from input
+          
+        $mail->addAddress('1201201535@student.mmu.edu.my');
+    
+            //$mail->addReplyTo('lamkaizhe16@gmail.com');
+
+            // HTML body
+            $mail->isHTML(true);
+            $mail->Subject="". $sub ."" ;
+            $mail->Body="" . $mes . "
+			
+			
+			<br><br>Response From 
+			<br>MR/MRS. ".$name."
+			<br>Contact : " .$email. "";
+		
+			            if(!$mail->send()){
+                ?>
+                    <script>
+                        alert("<?php echo " Invalid Email "?>");
+                    </script>
+                <?php
+            }else{
+				?>
+                    <script>
+                        alert("<?php echo " Response Sent Sucessfully "?>");
+                    </script>
+                <?php
+                header("refresh:0.001;");
+            }
+	}
+	
+	
+	
+	?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -45,7 +107,8 @@ error_reporting(0);
     <link rel="stylesheet" href="assets/css/lightbox.css">
 	
 	<link rel="stylesheet" href="css/templatemo-sixteen.css">
-	<style>
+
+		<style>
 		.letter {
 		  display: inline-block;
 		  opacity: 0;
@@ -53,7 +116,37 @@ error_reporting(0);
 		.letter2 {
 		  display: inline-block;
 		}
+		.animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+	#D3D3D3 10%,
+	 #C0C0C0 29%,
+	 #A9A9A9 67%,
+    #808080 100%
+  
+   
+    
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 4s linear infinite;
+  display: inline-block;
+      font-size: 400%;
+}
 
+@keyframes textclip {
+  to {
+    background-position: 100% center;
+  }
+}
 	</style>
 </head>
 
@@ -74,7 +167,7 @@ error_reporting(0);
                         <!-- 
                             <li class="submenu">
                                 <a href="javascript:;">Drop Down</a>
-                                <ul>
+                                                                             ]                      <ul>
                                     <li><a href="#">Drop Down Page 1</a></li>
                                     <li><a href="#">Drop Down Page 2</a></li>
                                     <li><a href="#">Drop Down Page 3</a></li>
@@ -111,70 +204,71 @@ error_reporting(0);
     <div class="container-fluid p-0 mb-5 pb-5" id="home">
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             
-			<div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="img/jmmcookies2.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase mb-md-3">Traditional & Delicious</h4>
-                            <h1 class="display-3 text-white mb-md-4" style="font-size:70px">
-								<div class="letter">J</div>
-								<div class="letter">M</div>
-								<div class="letter">M</div>
-								<div style="display: inline-block;"></div>
-								<div class="letter">C</div>
-								<div class="letter">O</div>
-								<div class="letter">O</div>
-								<div class="letter">K</div>
-								<div class="letter">I</div>
-								<div class="letter">E</div>
-								<div class="letter">S</div>
-								<div style="display: inline-block;"></div>
-								<div class="letter">O</div>
-								<div class="letter">E</div>
-								<div class="letter">M</div>
-							</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="img/jmmcookies9.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase mb-md-3">Traditional & Delicious</h4>
-                            <h1 class="display-3 text-white mb-md-4" style="font-size:70px">
-								<div class="letter2">J</div>
-								<div class="letter2">M</div>
-								<div class="letter2">M</div>
-								<div style="display: inline-block;"></div>
-								<div class="letter2">C</div>
-								<div class="letter2">O</div>
-								<div class="letter2">O</div>
-								<div class="letter2">K</div>
-								<div class="letter2">I</div>
-								<div class="letter2">E</div>
-								<div class="letter2">S</div>
-								<div style="display: inline-block;"></div>
-								<div class="letter2">O</div>
-								<div class="letter2">E</div>
-								<div class="letter2">M</div>
-							</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			 <div class="carousel-inner" style="margin-top:80px;">
+			 
+				<?php
+									$conn = $connect;
+										
+									if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+									}
+									$sql = "SELECT * FROM slideshow";
+									$result = $conn->query($sql);
+									if ($result->num_rows > 0) {
+
+									while($row = $result->fetch_assoc()) {
+									
+									if($row["SlideID"] == "1"){
+										?>
+									<div class="carousel-item active">
+									<img class="w-100" src="images/<?php echo $row["SImage"]?>" alt="Image">
+									<div class="carousel-caption d-flex flex-column align-items-center justify-content-center" style="width: auto%;left: 14%;right: 14%;">
+									<div class="p-3" style="max-width: auto%;">
+									<h4 class="text-white text-uppercase mb-md-3">Traditional & Delicious</h4>
+									<h3 class="animate-charcter"> COOKIES OEM</h3><br>
+									</div>
+									</div>
+									</div>
+										<?php
+										
+										
+									}else{
+										?>
+										 <div class="carousel-item">
+										<img class="w-100" src="images/<?php echo $row["SImage"]?>" alt="Image">
+										<div class="carousel-caption d-flex flex-column align-items-center justify-content-center" style="width: auto%;left:14%;right:14%;">
+										<div class="p-3" style="max-width: auto%;">
+										<h4 class="text-white text-uppercase mb-md-3">Traditional & Delicious</h4>
+										<h3 class="animate-charcter"> COOKIES OEM</h3><br>
+										</div>
+										</div>
+										</div>
+										<?php
+										
+									}
+
+									}
+									echo "";
+									} else { echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No results Found !"; }
+									?>    
+			 
+			 
+			 
+			 
+                
+               
+            
             <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-                <div class="btn btn-secondary px-0" style="width: 35px; height: 35px; border-radius:10px;">
+                <div class="btn btn-secondary px-0" style="width: 37px; height: 45px; border-radius:10px;">
                     <span class="carousel-control-prev-icon mb-n2"></span>
                 </div>
             </a>
             <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                <div class="btn btn-secondary px-0" style="width: 35px; height: 35px; border-radius:10px;">
+                <div class="btn btn-secondary px-0" style="width: 37px; height: 45px; border-radius:10px;">
                     <span class="carousel-control-next-icon mb-n2"></span>
                 </div>
             </a>
+			</div>
         </div>
     </div>
     <!-- Carousel End -->
@@ -343,27 +437,27 @@ error_reporting(0);
                 <div class="col-lg-9">
                     <div class="contact-form bg-light rounded p-5">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post" >
                             <div class="form-row">
                                 <div class="col-sm-6 control-group">
-                                    <input style="border-radius:45px;" type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
+                                    <input style="border-radius:45px;" name="name" type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="col-sm-6 control-group">
-                                    <input style="border-radius:45px;" type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
+                                    <input style="border-radius:45px;" name="email" type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <input style="border-radius:45px;" type="text" class="form-control p-4" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                                <input style="border-radius:45px;" name="sub" type="text" class="form-control p-4" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="control-group">
-                                <textarea style="border-radius:45px;" class="form-control p-4" rows="6" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                                <textarea style="border-radius:45px;" name="mes" class="form-control p-4" rows="6" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div>
-                                <button style="border-radius:45px;" class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">Send Message</button>
+                                <button style="border-radius:45px;" name="sbtn" class="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">Send Message</button>
                             </div>
                         </form>
                     </div>

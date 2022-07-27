@@ -3,47 +3,52 @@ include("Connection.php");
 session_start();
 error_reporting(0);
 ?>
-<!--<?php
-#if(!isset($_SESSION['id']))
-#{
-#?>
-    <script>
-    alert("Please login. Thank you!!!");
-    </script>
-    #<?php
-   # header("refresh:0.001;url=login.php");
-    //exit();
-	
-	
-#}else{
-	#$Admin_id=$_SESSION['id'];
-#$result=mysqli_query($connect,"SELECT *FROM admin WHERE AID = $Admin_id");
-#$row = mysqli_fetch_assoc($result);
-#	if(($row['Department'])!='All Department')
-#{	
-#?>
-    <script>
-    alert("You Are Not Authorize To Access This Page!!!");
-    </script>
-  #  <?php
-   # header("refresh:0.001;url=generalD.php");
-    //exit();
-	
-#}
-#}
-?>
 <?php
+								if(isset($_GET["details"]))
+								{
+								$ad_id=$_GET['id'];
+								$result=mysqli_query($connect,"SELECT * FROM product WHERE PID='$ad_id'");
+								$row=mysqli_fetch_assoc($result);
+								
+								$PID = $row["PID"] ;
+								}
+								
+								?>
+								<?php
 if(isset($_POST["sbtn"]))
 {
-	$productname = $_POST["pname"];
+	$pname = $_POST["pname"];
 	$product_image = $_FILES['profileImage']['name'];
-	$rmk = $_POST["remark"];
+	$r = $_POST["remark"];
 	$cat = $_POST["category"];
+	
+	$Image= $row['PImage'];
+	
+	if(empty($product_image)){
+		
+		$sql=mysqli_query($connect,"Update product SET 	PName = '$pname',
+												PDesc = '$r',
+												Category = '$cat'
+												   WHERE PID = '$ad_id'");
+	
+		header("refresh:0.001;url=editProduct.php?details&id=$PID");
+		?>
+		<script type="text/javascript">
+		alert("Updated Successfully!");
+		
+		</script>
+		
+	<?php 
 
+	}else{
 
-	$sql=mysqli_query($connect,"INSERT INTO product(PName,PImage,PDesc,Category)VALUES('$productname','$product_image','$rmk','$cat')");
+$sql=mysqli_query($connect,"Update product SET 	PName = '$pname',
+												PDesc = '$r',
+												Category = '$cat',
+												PImage = '$product_image'
+												   WHERE PID = '$ad_id'");
 
-	header("refresh:0.001;url=addProduct.php");
+	header("refresh:0.001;url=editProduct.php?details&id=$PID");
 	$target = 'images/' . $product_image;
         if(move_uploaded_file($_FILES['profileImage']['tmp_name'],$target))
         {
@@ -55,16 +60,17 @@ if(isset($_POST["sbtn"]))
 		  $css_class = "alert-danger";
         }
 
-?>-->
+?>
 		<script type="text/javascript">
-		alert("Added Successfully!");
+		alert("Updated Successfully!");
 		
 		</script>
 		
 	<?php 
- header("refresh:0.001;url=addProduct.php");
+
 }
-?>-->
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -133,7 +139,7 @@ $(document).ready(function(){
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
-      <div class="logo">
+          <div class="logo">
         <a href="admin.php" class="simple-text logo-mini">
           Oem
         </a>
@@ -185,41 +191,77 @@ $(document).ready(function(){
                 <div class="tm-block" style="border-radius:10px;border-style: groove;background-color: #ffffff;opacity: 75%;">
                     <div class="row" style="margin: auto;">
                         <div class="col-12" >
-                            <h1 class="tm-block-title" style="color:black;">Add New Product</h1>
+                            <h1 class="tm-block-title" style="color:black;">Edit Product</h1>
                         </div>
                     </div>
                     <div class="row" style="margin: auto;">
                         <div class="col-12">
                             <form name = "updatAdmin" method="post" class="tm-signup-form" enctype="multipart/form-data">
 							<div >
-								<label for="profileImage">Product Image</label>
-								<input type="file" name="profileImage" id="profileImage" class="form-control">
+							<div class="form-group" style="text-align:center;">
+								
+								<hr>
+									<label for="gender"><h4>Product Image &nbsp;</h4> </label>
+									<div class="d-flex flex-column align-items-center text-center p-2 py-3">
+									<img class="" style="margin:auto;width:150px;height:auto%;border-radius:30px;" img src="images/<?php echo $row['PImage'] ?>" type="image" class="form-control selectList"  autocomplete="off"  list="code" onchange="showCustomer(this.value)" style="width:100%;Height:50%;" name="" id="gender" readonly>
+									</div>
+									</div>				
+								<input type="file" value="" name="profileImage" id="profileImage" class="form-control">
 							</div>
+							<hr>
                                 <div class="form-group">
-                                    <label for="email">Product Name </label>
-                                    <input value="" placeholder="Please Enter Product Name"  name="pname" type="text" class="form-control validate" autocomplete="off" required>
-									<span id="erroremail"></span>	
+                                    <label for="name">Product Name </label>
+                                    <input value="<?php echo $row['PName']?>"  name="pname" type="text" class="form-control"  autocomplete="off" required>
+									 
+									<span id="errorname"></span>
                                 </div>
 								<div class="form-group" style="margin-bottom:0%;">
                                     <label for="email">Description </label>
-                                    <textarea style="border-radius:10px;border: 1px solid #00000030;" value="" rows="4" cols="50"  placeholder="Remarks" id="email" name="remark" type="text" class="form-control validate"></textarea>
+                                    <textarea style="border-radius:10px;border: 1px solid #00000030;" value="<?php echo $row["PDesc"]?>" rows="4" cols="50"  placeholder="<?php echo $row["PDesc"]?>" id="email" name="remark" type="text" class="form-control validate" required><?php echo $row["PDesc"]?></textarea>
 									<span id="erroremail"></span>	
                                 </div>
+								<br>
+								<?php if($row["Category"] == "col-lg-4 col-md-4 all cny"){?>
 								<div class="select">
 									<label for="gender">Category &nbsp; </label>
 									<select  class="form-control selectList" name="category" id="gender" required>
-									<option value="" disabled selected>Please Select Product Category</option>
+									<option value="<?php echo $row["Category"]?>" disabled selected>New Year Cookies</option>
 									<optgroup label="Group">
 									<option value="col-lg-4 col-md-4 all cny">New Year Cookies</option>
 									<option value="col-lg-4 col-md-4 all hra">Raya Cookies</option>
 									<option value="col-lg-4 col-md-4 all mkf">Mooncakes</option>
 									</select>
                                 </div>
+								<?php }elseif($row["Category"] == "col-lg-4 col-md-4 all hra"){?>
+									<div class="selsect">
+									<label for="gender">Category &nbsp; </label>
+									<select  class="form-control selectList" name="category" id="gender" required>
+									<option value="<?php echo $row["Category"]?>" disabled selected>Raya Cookies</option>
+									<optgroup label="Group">
+									<option value="col-lg-4 col-md-4 all cny">New Year Cookies</option>
+									<option value="col-lg-4 col-md-4 all hra">Raya Cookies</option>
+									<option value="col-lg-4 col-md-4 all mkf">Mooncakes</option>
+									</select>
+                                </div>
+								<?php }else{?>
+									<div class="select">
+									<label for="gender">Category &nbsp; </label>
+									<select  class="form-control selectList" name="category" id="gender" required>
+									<option value="<?php echo $row["Category"]?>" disabled selected>Mooncakes</option>
+									<optgroup label="Group">
+									<option value="col-lg-4 col-md-4 all cny">New Year Cookies</option>
+									<option value="col-lg-4 col-md-4 all hra">Raya Cookies</option>
+									<option value="col-lg-4 col-md-4 all mkf">Mooncakes</option>
+									</select>
+                                </div>
+								<?php } ?>
+									
+                               
 								<hr>
                                 <div class="form-group">
                                     <div class="col-12 col-sm-6" style="float:right;">
 									
-                                        <button style="float:right;" type="submit" name="sbtn" class="btn btn-secondary" onclick="Profile Updated">Add</button>
+                                        <button style="float:right;" type="submit" name="sbtn" class="btn btn-secondary" onclick="Profile Updated">Update</button>
 
                                     </div>
                                 </div>

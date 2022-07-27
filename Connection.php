@@ -11,6 +11,6 @@ if(!$connect)
 		</script>
 		<?php
 	echo("Connect Unsuccessfully");
-}else{echo("Connect Successful");}
+}
 
 ?>
