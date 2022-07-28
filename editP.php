@@ -3,7 +3,20 @@ include("Connection.php");
 session_start();
 error_reporting(0);
 ?>
-
+<?php
+if(!isset($_SESSION['id']))
+{
+?>
+    <script>
+    alert("Please login. Thank you!!!");
+    </script>
+    <?php
+    header("refresh:0.001;url=login.php");
+    //exit();
+	
+	
+}
+?>
 <?php
 								if(isset($_GET["details"]))
 								{
@@ -161,7 +174,7 @@ $(document).ready(function(){
             </a>
           </li>
 		  <li>
-            <a href=".php">
+            <a href="logout.php">
               <i class="fa fa-power-off"></i>
               <p>Logout</p>
             </a>
